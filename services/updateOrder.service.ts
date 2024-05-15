@@ -1,10 +1,10 @@
 import { orderRepository } from "../database/prisma.client";
 
-const updateTodoItemService = async (data) => {
+const updateOrderItemService = async (data) => {
   try {
-    const { order_number } = data;
-    const orderItem = await orderRepository.findFirst({
-      where: { order_number },
+    const { order_number, ...rest } = data;
+    const orderItem = await orderRepository.findUnique({
+      where: { order_number: Number(order_number) },
     });
     //check if item exists--- error handling
     if (!orderItem || !orderItem.order_number) {
@@ -14,8 +14,8 @@ const updateTodoItemService = async (data) => {
       };
     }
     const updatedOrderItem = await orderRepository.update({
-      where: { order_number },
-      data,
+      where: { order_number: Number(order_number) },
+      data: rest,
     });
 
     return {
@@ -29,4 +29,4 @@ const updateTodoItemService = async (data) => {
   }
 };
 
-export default updateTodoItemService;
+export default updateOrderItemService;

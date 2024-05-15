@@ -1,9 +1,11 @@
 import { orderRepository } from "../database/prisma.client";
 
-const deleteTodoItemService = async (data) => {
+const deleteOrderItemService = async (data) => {
   try {
     const { order_number } = data;
-    const todoItem = await orderRepository.delete({ where: { order_number } });
+    const todoItem = await orderRepository.delete({
+      where: { order_number: Number(order_number) },
+    });
     return {
       isSuccess: true,
       message: "Order Item Deleted",
@@ -15,4 +17,4 @@ const deleteTodoItemService = async (data) => {
   }
 };
 
-export default deleteTodoItemService;
+export default deleteOrderItemService;

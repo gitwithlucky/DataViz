@@ -11,3 +11,5 @@ CREATE TABLE "Orders" (
 
     CONSTRAINT "Orders_pkey" PRIMARY KEY ("order_number")
 );
+
+ALTER SEQUENCE "Orders_order_number_seq" MINVALUE 51 START 51 RESTART 51;

@@ -1,8 +1,12 @@
 import { orderRepository } from "../database/prisma.client";
 
-const fetchTodoItemsService = async () => {
+const fetchOrderItemsService = async () => {
   try {
-    const orderItems = await orderRepository.findMany();
+    const orderItems = await orderRepository.findMany({
+      orderBy: {
+        order_number: 'asc'
+      }
+    });
     return {
       isSuccess: true,
       message: "Request successful",
@@ -14,4 +18,4 @@ const fetchTodoItemsService = async () => {
   }
 };
 
-export default fetchTodoItemsService;
+export default fetchOrderItemsService;

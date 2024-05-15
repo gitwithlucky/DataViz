@@ -11,7 +11,7 @@ const router: Router = Router();
 router.post("/create_order", createOrder);
 router.get("/fetch_order/:order_number", fetchOrder);
 router.get("/fetch_orders", fetchOrders);
-router.put("/update_order/:order_number", updateOrder);
+router.patch("/update_order/:order_number", updateOrder);
 router.delete("/delete_order/:order_number", deleteOrder);
 
 //Do User CRUD

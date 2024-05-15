@@ -5,7 +5,7 @@ const validationSchemas = {
     customer_name: Joi.string().required().label("customer_name").max(50),
     product_name: Joi.string().required().label("product_name").max(50),
     product_category: Joi.string().required().label("product_category").max(50),
-    price: Joi.string().required().label("price"),
+    price: Joi.number().required().label("price"),
     order_date: Joi.date()
       .required()
       .label("order_date")
@@ -20,7 +20,7 @@ const validationSchemas = {
     customer_name: Joi.string().label("customer_name").max(50),
     product_name: Joi.string().label("product_name").max(50),
     product_category: Joi.string().label("product_category").max(50),
-    price: Joi.string().label("price"),
+    price: Joi.number().label("price"),
     order_date: Joi.date()
       .label("order_date")
       .allow(null, "")

@@ -2,17 +2,16 @@ import { Request, Response } from "express";
 import { sendError, sendSuccess } from "../utils/app.helpers";
 import { validationSchemas } from "../utils/validationSchemas";
 import validate from "../utils/validator";
-import deleteTodoItemService from "../services/deleteOrder.service";
+import deleteOrderItemService from "../services/deleteOrder.service";
 
-const deleteTodoItem = async (req: Request, response: Response) => {
+const deleteOrderItem = async (req: Request, response: Response) => {
   const { errors, data } = validate(validationSchemas.fetchOrderSchema, {
     ...req.params,
   });
   if (errors) {
     return sendError({ response, errors });
   }
-  console.log(data);
-  const { isSuccess, message, todoItem } = await deleteTodoItemService(data);
+  const { isSuccess, message, todoItem } = await deleteOrderItemService(data);
   if (isSuccess) {
     return sendSuccess({ response, data: todoItem, message });
   }
@@ -20,4 +19,4 @@ const deleteTodoItem = async (req: Request, response: Response) => {
   return sendError({ response, message });
 };
 
-export default deleteTodoItem;
+export default deleteOrderItem;
